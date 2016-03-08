@@ -14,35 +14,31 @@ namespace Logic
 
     public static class Task2
     {
-        public static void SortByRowSum(int[][] arr, SortOrder order)
+        private delegate int SortConditionDelegate(int[] arr);
+        private static Dictionary<string, SortConditionDelegate> sortConditions;
+
+        static Task2()
         {
-            for (int i = 0; i < arr.Length - 1; i++)
-                for (int j = 0; j < arr.Length - i - 1; j++)
-                    if (order == SortOrder.Ascendent)
-                    {
-                        if ((arr[j] == null) ||(arr[j + 1] != null && arr[j].Sum() > arr[j + 1].Sum()))
-                        {
-                            int[] temp = arr[j];
-                            arr[j] = arr[j + 1];
-                            arr[j + 1] = temp;
-                        }
-                    }
-                    else
-                        if ((arr[j] == null) || (arr[j + 1] != null && arr[j].Sum() < arr[j + 1].Sum()))
-                        {
-                            int[] temp = arr[j];
-                            arr[j] = arr[j + 1];
-                            arr[j + 1] = temp;
-                        }
+            sortConditions = new Dictionary<string, SortConditionDelegate>();
+
+            sortConditions.Add("Sum", Sum);
+            sortConditions.Add("Max", Max);
+            sortConditions.Add("Min", Min);
         }
 
-        public static void SortByMaxRowElement(int[][] arr, SortOrder order)
+        private static int Sum(int[] arr) { return arr.Sum(); }
+
+        private static int Max(int[] arr) { return arr.Max(); }
+
+        private static int Min(int[] arr) { return arr.Min(); }
+
+        private static void Sort(int[][] arr, SortOrder order, string condition)
         {
             for (int i = 0; i < arr.Length - 1; i++)
                 for (int j = 0; j < arr.Length - i - 1; j++)
                     if (order == SortOrder.Ascendent)
                     {
-                        if ((arr[j] == null) || (arr[j + 1] != null && arr[j].Max() > arr[j + 1].Max()))
+                        if ((arr[j] == null) || (arr[j + 1] != null && sortConditions[condition](arr[j]) > sortConditions[condition](arr[j + 1])))
                         {
                             int[] temp = arr[j];
                             arr[j] = arr[j + 1];
@@ -50,7 +46,7 @@ namespace Logic
                         }
                     }
                     else
-                        if ((arr[j] == null) || (arr[j + 1] != null && arr[j].Max() < arr[j + 1].Max()))
+                        if ((arr[j] == null) || (arr[j + 1] != null && sortConditions[condition](arr[j]) < sortConditions[condition](arr[j + 1])))
                     {
                         int[] temp = arr[j];
                         arr[j] = arr[j + 1];
@@ -58,27 +54,10 @@ namespace Logic
                     }
         }
 
-        public static void SortByMinRowElement(int[][] arr, SortOrder order)
-        {
-            for (int i = 0; i < arr.Length - 1; i++)
-                for (int j = 0; j < arr.Length - i - 1; j++)
-                    if (order == SortOrder.Ascendent)
-                    {
-                        if ((arr[j] == null) || (arr[j + 1] != null && arr[j].Min() > arr[j + 1].Min()))
-                        {
-                            int[] temp = arr[j];
-                            arr[j] = arr[j + 1];
-                            arr[j + 1] = temp;
-                        }
-                    }
-                    else
-                        if ((arr[j] == null) || (arr[j + 1] != null && arr[j].Min() < arr[j + 1].Min()))
-                    {
-                        int[] temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-                    }
-        }
+        public static void SortByRowSum(int[][] arr, SortOrder order) { Sort(arr, order, "Sum"); }
 
+        public static void SortByMaxRowElement(int[][] arr, SortOrder order) { Sort(arr, order, "Max"); }
+
+        public static void SortByMinRowElement(int[][] arr, SortOrder order) { Sort(arr, order, "Min"); }
     }
 }
