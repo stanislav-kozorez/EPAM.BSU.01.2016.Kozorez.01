@@ -9,6 +9,10 @@ namespace Logic
     public static class Task1
     {
         private const double ACCURACY = 0.0001;
+        
+        /// <summary>
+        /// Returns the root of the y-th power of number x 
+        /// </summary>
         public static double Root(double x, double y)
         {
             double Xk = x;

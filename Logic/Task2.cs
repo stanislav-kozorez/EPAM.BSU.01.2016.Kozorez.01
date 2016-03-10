@@ -54,10 +54,19 @@ namespace Logic
                     }
         }
 
+        /// <summary>
+        /// Sorts the array in ascendent/descendent order by the sum of each row
+        /// </summary>
         public static void SortByRowSum(int[][] arr, SortOrder order) { Sort(arr, order, "Sum"); }
 
+        /// <summary>
+        /// Sorts the array in ascendent/descendent order by maximum element of each row
+        /// </summary>
         public static void SortByMaxRowElement(int[][] arr, SortOrder order) { Sort(arr, order, "Max"); }
 
+        /// <summary>
+        /// Sorts the array in ascendent/descendent order by minimum element of each row
+        /// </summary>
         public static void SortByMinRowElement(int[][] arr, SortOrder order) { Sort(arr, order, "Min"); }
     }
 }
