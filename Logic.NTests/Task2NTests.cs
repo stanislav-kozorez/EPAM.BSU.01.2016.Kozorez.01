@@ -1,18 +1,22 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using Logic;
 
-namespace Logic.Tests
+namespace Logic.NTests
 {
-    [TestClass]
-    public class Task2Tests
+    [TestFixture]
+    public class Task2NTests
     {
         private int[][] initial = new int[5][] { new int[] { 8, 4, 7, 10, 9, 5, 20, }, null, new int[] { 1, 7, 3 }, null, new int[] { 5, 7, 10, 7 } };
 
-        [TestMethod]
+        [Test]
         public void SortByRowSum_AscendentOrder_ChangedInitialArray()
         {
-            int[][] expected = new int[5][] {new int[] { 1, 7, 3 }, new int[] { 5, 7, 10, 7 }, new int[] { 8, 4, 7, 10, 9, 5, 20, }, null, null};
+            int[][] expected = new int[5][] { new int[] { 1, 7, 3 }, new int[] { 5, 7, 10, 7 }, new int[] { 8, 4, 7, 10, 9, 5, 20, }, null, null };
 
             Task2.SortByRowSum(initial, SortOrder.Ascendent);
 
@@ -20,7 +24,7 @@ namespace Logic.Tests
                 CollectionAssert.AreEqual(initial[i], expected[i]);
         }
 
-        [TestMethod]
+        [Test]
         public void SortByRowSum_DescendentOrder_ChangedInitialArray()
         {
             int[][] expected = new int[5][] { new int[] { 8, 4, 7, 10, 9, 5, 20, }, new int[] { 5, 7, 10, 7 }, new int[] { 1, 7, 3 }, null, null };
@@ -31,7 +35,7 @@ namespace Logic.Tests
                 CollectionAssert.AreEqual(initial[i], expected[i]);
         }
 
-        [TestMethod]
+        [Test]
         public void SortByMaxRowElement_AscendentOrder_ChangedInitialArray()
         {
             int[][] expected = new int[5][] { new int[] { 1, 7, 3 }, new int[] { 5, 7, 10, 7 }, new int[] { 8, 4, 7, 10, 9, 5, 20, }, null, null };
@@ -42,7 +46,7 @@ namespace Logic.Tests
                 CollectionAssert.AreEqual(initial[i], expected[i]);
         }
 
-        [TestMethod]
+        [Test]
         public void SortByMaxRowElement_DescendentOrder_ChangedInitialArray()
         {
             int[][] expected = new int[5][] { new int[] { 8, 4, 7, 10, 9, 5, 20, }, new int[] { 5, 7, 10, 7 }, new int[] { 1, 7, 3 }, null, null };
@@ -53,7 +57,7 @@ namespace Logic.Tests
                 CollectionAssert.AreEqual(initial[i], expected[i]);
         }
 
-        [TestMethod]
+        [Test]
         public void SortByMinRowElement_AscendentOrder_ChangedInitialArray()
         {
             int[][] expected = new int[5][] { new int[] { 1, 7, 3 }, new int[] { 8, 4, 7, 10, 9, 5, 20, }, new int[] { 5, 7, 10, 7 }, null, null };
@@ -64,7 +68,7 @@ namespace Logic.Tests
                 CollectionAssert.AreEqual(initial[i], expected[i]);
         }
 
-        [TestMethod]
+        [Test]
         public void SortByMinRowElement_DescendentOrder_ChangedInitialArray()
         {
             int[][] expected = new int[5][] { new int[] { 5, 7, 10, 7 }, new int[] { 8, 4, 7, 10, 9, 5, 20, }, new int[] { 1, 7, 3 }, null, null };

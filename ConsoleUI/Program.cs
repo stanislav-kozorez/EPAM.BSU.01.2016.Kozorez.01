@@ -15,7 +15,7 @@ namespace ConsoleUI
             int[][] arr2 = new int[arr.Length][];
 
             Console.WriteLine();
-            Console.WriteLine("Logic Pow: {0} ", Task1.Root(6, 2));
+            Console.WriteLine("Logic Pow: {0} ", Task1.Root(8, 3));
             Console.WriteLine("Math Pow: {0} ", Math.Pow(6, 1/2.0));
            
             Console.WriteLine(Environment.NewLine + "Initial array:");
