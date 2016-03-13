@@ -17,12 +17,20 @@ namespace Logic
         {
             double Xk = x;
             double result = x;
+
+            if (y == 0)
+                throw new ArgumentException("Unable to take root from zero power");
+            if (x == 0 && y < 0)
+                throw new ArgumentException($"Wrong set of arguments  {nameof(x)} and {nameof(y)}");
+            if (x < 0 && y % 2 == 0)
+                throw new ArgumentException("Unagle to take root from negative value when power is even number");
+            if (x == 0 && y > 0)
+                return 0;
+            
             do
             {
                 Xk = result;
-                result = 1 / y * ((y - 1) * Xk + x / (Math.Exp((y - 1) * Math.Log(Xk))));
-                
-
+                result = 1 / y * ((y - 1) * Xk + x / (Math.Exp((y - 1) * Math.Log(Xk))));  
             } while (Math.Abs(result - Xk) > ACCURACY);
 
             return result;
